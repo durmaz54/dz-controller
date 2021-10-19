@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'gpsplan.dart';
 import 'joystick_l.dart';
 import 'joystick_r.dart';
 import 'package:dz_plane/ble_data.dart';
@@ -77,7 +76,6 @@ class BleMenu extends StatefulWidget {
 
 class _BleMenuState extends State<BleMenu> {
   bool ble_visib = false;
-  bool connecting = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -100,7 +98,7 @@ class _BleMenuState extends State<BleMenu> {
               ElevatedButton(
                   onPressed: () {
                     Provider.of<BleData>(context, listen: false)
-                        .send(Uint8List.fromList([1]));
+                        .send("abdul samet durmaz \n");
                   },
                   child: Text("dene")),
             ],
@@ -108,7 +106,10 @@ class _BleMenuState extends State<BleMenu> {
           visible: ble_visib,
         ),
         Spacer(),
-        Text("Connecting = " + connecting.toString()),
+        Text("Connecting = " +
+            Provider.of<BleData>(context, listen: true)
+                .connecting_state
+                .toString()),
       ],
     );
   }
